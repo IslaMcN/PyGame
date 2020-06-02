@@ -10,14 +10,16 @@ class MyGame(arcade.Window):
     
     def setup(self):
         # Set up game here
-        pass
+        self.player_list = arcade.SpriteList()
+        self.crystal_list = arcade.SpriteList()
+
+        self.score = 0
+
+
 
     def on_draw(self):
-        arcade.start_render()
-        SPRITE_SCALING_CRYSTAL = 0.2
         # Drawings here
-        crystal = arcade.Sprite("sprites/items/PNG/shiny/1.png", SPRITE_SCALING_CRYSTAL)
-        return crystal
+        pass
     
     def update(self, delta_time):
         # Logic to move and game logic
