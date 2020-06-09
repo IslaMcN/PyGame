@@ -23,7 +23,7 @@ def main():
 
     draw_background()
     draw_pine_tree(50, 250)
-    #draw_pine_tree(350, 320)
+    draw_pine_tree(50, 220)
     draw_bird(70, 500)
     draw_bird(470, 550)
 
