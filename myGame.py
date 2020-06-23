@@ -20,6 +20,7 @@ class MyGame(arcade.Window):
         self.player_list.append(self.player_sprite)
 
         for i in range(COIN_COUNT):
+            SPRITE_SCALING_COIN = 0.2
             coin = arcade.Sprite("sprites/items/PNG/shiny/1.png", SPRITE_SCALING_COIN)
 
             coin.center_x = random.randrange(SCREEN_WIDTH)
@@ -36,7 +37,11 @@ class MyGame(arcade.Window):
     
     def update(self, delta_time):
         # Logic to move and game logic
-        pass
+        coins_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.coin_list)
+
+        for coin in coins_hit_list:
+            coin.kill()
+            self.score += 1
 
 def main():
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
