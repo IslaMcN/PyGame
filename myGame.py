@@ -1,7 +1,14 @@
 import arcade
+import random
+
+SPRITE_SCALING_PLAYER = 0.5
+SPRITE_SCALING_COIN = .25
+COIN_COUNT = 50
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+SCREEN_TITLE = "SPRITE EXAMPLE"
 
 class MyGame(arcade.Window):
     def __init__(self, width, height):
@@ -33,7 +40,7 @@ class MyGame(arcade.Window):
     def on_draw(self):
         arcade.start_render()
         self.coin_list.draw()
-        self.player_list()
+        self.player_list.draw()
     
     def update(self, delta_time):
         # Logic to move and game logic
