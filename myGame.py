@@ -11,8 +11,14 @@ SCREEN_HEIGHT = 600
 SCREEN_TITLE = "SPRITE EXAMPLE"
 
 class MyGame(arcade.Window):
-    def __init__(self, width, height):
-        super().__init__(width, height)
+    def __init__(self):
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+
+        self.player_list = None
+        self.coin_list = None
+        self.player_sprite = None
+        self.score = 0
+        self.set_mouse_visible(False)
         arcade.set_background_color(arcade.color.AMAZON)
     
     def setup(self):
