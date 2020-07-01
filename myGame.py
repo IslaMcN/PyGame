@@ -33,7 +33,7 @@ class MyGame(arcade.Window):
         self.player_list.append(self.player_sprite)
 
         for i in range(COIN_COUNT):
-            SPRITE_SCALING_COIN = 0.2
+            
             coin = arcade.Sprite("sprites/items/PNG/shiny/1.png", SPRITE_SCALING_COIN)
 
             coin.center_x = random.randrange(SCREEN_WIDTH)
