@@ -47,6 +47,10 @@ class MyGame(arcade.Window):
         arcade.start_render()
         self.coin_list.draw()
         self.player_list.draw()
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        self.player_sprite.center_x = x
+        self.player_sprite.center_y = y
     
     def update(self, delta_time):
         # Logic to move and game logic
