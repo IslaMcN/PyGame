@@ -48,6 +48,9 @@ class MyGame(arcade.Window):
         self.coin_list.draw()
         self.player_list.draw()
 
+        output = f"Score: {self.score}"
+        arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+
     def on_mouse_motion(self, x, y, dx, dy):
         self.player_sprite.center_x = x
         self.player_sprite.center_y = y
