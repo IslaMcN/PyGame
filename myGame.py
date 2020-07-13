@@ -1,7 +1,7 @@
 import arcade
 import random
 
-SPRITE_SCALING_PLAYER = 0.5
+SPRITE_SCALING_PLAYER = 0.75
 SPRITE_SCALING_COIN = .25
 COIN_COUNT = 50
 
@@ -27,7 +27,7 @@ class MyGame(arcade.Window):
 
         self.score = 0
 
-        self.player_sprite = arcade.Sprite("sprites/maincharacter/1 Woodcutter/Woodcutter_idle.png", SPRITE_SCALING_PLAYER)
+        self.player_sprite = arcade.Sprite("sprites/maincharacter/1 Woodcutter/Woodcutter.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
         self.player_list.append(self.player_sprite)
@@ -55,16 +55,17 @@ class MyGame(arcade.Window):
         self.player_sprite.center_x = x
         self.player_sprite.center_y = y
     
-    def update(self, delta_time):
+    def on_update(self, delta_time):
         # Logic to move and game logic
+        self.coin_list.update()
         coins_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.coin_list)
 
         for coin in coins_hit_list:
-            coin.kill()
+            coin.remove_from_sprite_lists()
             self.score += 1
 
 def main():
-    game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+    game = MyGame()
     game.setup()
     arcade.run()
 
