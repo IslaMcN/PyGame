@@ -13,7 +13,7 @@ SCREEN_TITLE = "SPRITE EXAMPLE"
 class MyGame(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
         self.player_list = None
         self.coin_list = None
         self.player_sprite = None
