@@ -4,7 +4,7 @@ import random
 SPRITE_SCALING_PLAYER = 0.75
 SPRITE_SCALING_COIN = .25
 COIN_COUNT = 50
-
+MOVEMENT_SPEED = 5
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
@@ -21,6 +21,23 @@ class MyGame(arcade.Window):
         self.set_mouse_visible(False)
         arcade.set_background_color(arcade.color.AMAZON)
     
+    def on_key_press(self, key, modifiers):
+        if key == arcade.key.UP:
+            self.player_sprite.change_y = MOVEMENT_SPEED
+        elif key == arcade.key.DOWN:
+            self.player_sprite.change_y = -MOVEMENT_SPEED
+        elif key == arcade.key.LEFT:
+            self.player_sprite.change_x = -MOVEMENT_SPEED
+        elif key == arcade.key.RIGHT:
+            self.player_sprite.change_x = MOVEMENT_SPEED
+
+    def on_key_release(self,key,modifiers):
+        if key == arcade.key.UP or key == arcade.key.DOWN:
+            self.player_sprite.change_y = 0
+        elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.player_sprite.change_x = 0
+
+
     def setup(self):
         self.player_list = arcade.SpriteList()
         self.coin_list = arcade.SpriteList()
