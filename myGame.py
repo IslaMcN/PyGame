@@ -37,6 +37,9 @@ class MyGame(arcade.Window):
         elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
             self.player_sprite.change_x = 0
 
+    def update(self, delta_time):
+        self.physics_engine.update()
+
 
     def setup(self):
         self.player_list = arcade.SpriteList()
