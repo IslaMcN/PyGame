@@ -1,5 +1,6 @@
 import arcade
 import random
+import os
 
 SPRITE_SCALING_PLAYER = 0.75
 SPRITE_SCALING_COIN = .25
@@ -8,14 +9,21 @@ MOVEMENT_SPEED = 5
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-SCREEN_TITLE = "SPRITE EXAMPLE"
+SCREEN_TITLE = "SPRITE EXAMPLE - NOW WITH WALLS"
 
 class MyGame(arcade.Window):
-    def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
+    def __init__(self, width, height, title):
+        super().__init__(width, height, title)
+
+        file_path = os.path.dirname(os.path.abspath(__file__))
+        os.chdir(file_path)
+
+        self.physics_engine = None
+        
         self.player_list = None
         self.coin_list = None
+        self.wall_list = None
+
         self.player_sprite = None
         self.score = 0
         self.set_mouse_visible(False)
