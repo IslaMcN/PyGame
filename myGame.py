@@ -2,6 +2,7 @@ import arcade
 import random
 import os
 
+SPRITE_SCALING = 0.5
 SPRITE_SCALING_PLAYER = 0.75
 SPRITE_SCALING_COIN = .25
 COIN_COUNT = 50
@@ -52,6 +53,9 @@ class MyGame(arcade.Window):
     def setup(self):
         self.player_list = arcade.SpriteList()
         self.coin_list = arcade.SpriteList()
+        self.wall_list = arcade.SpriteList()
+
+
 
         self.score = 0
 
@@ -59,6 +63,21 @@ class MyGame(arcade.Window):
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
         self.player_list.append(self.player_sprite)
+
+        ##Set up walls
+        for x in range(173, 650, 64):
+            wall = arcade.Sprite("sprites/items/PNG/Tileset.png", SPRITE_SCALING)
+            wall.center_x = x
+            wall.center_y = 200
+            self.wall_list.append(wall)
+
+        for y in range(273, 500, 64):
+            wall = arcade.Sprite("sprites/items/PNG/Tileset.png", SPRITE_SCALING)
+            wall.center_x = x
+            wall.center_y = 200
+            self.wall_list.append(wall)
+        
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
 
         for i in range(COIN_COUNT):
             
