@@ -92,6 +92,9 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
+
+        self.wall_list.draw()
+
         self.coin_list.draw()
         self.player_list.draw()
 
