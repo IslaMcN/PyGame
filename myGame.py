@@ -115,7 +115,7 @@ class MyGame(arcade.Window):
             self.score += 1
 
 def main():
-    game = MyGame()
+    game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
 
