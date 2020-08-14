@@ -77,7 +77,7 @@ class MyGame(arcade.Window):
             wall.center_y = 200
             self.wall_list.append(wall)
         
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list, gravity_constant=GRAVITY)
 
         for i in range(COIN_COUNT):
             
