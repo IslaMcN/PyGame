@@ -28,6 +28,13 @@ class MyGame(arcade.Window):
 
         self.physics_engine = None
         
+        self.view_left = 0
+        self.view_bottom = 0
+        self.game_over = False
+        self.last_time = None
+        self.frame_count = 0
+        self.fps_message = None
+
         self.player_list = None
         self.coin_list = None
         self.wall_list = None
