@@ -74,22 +74,37 @@ class MyGame(arcade.Window):
         self.score = 0
 
         self.player_sprite = arcade.Sprite("sprites/maincharacter/1 Woodcutter/Woodcutter.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite.center_x = 50
-        self.player_sprite.center_y = 50
+        self.player_sprite.center_x = 64
+        self.player_sprite.center_y = 270
         self.player_list.append(self.player_sprite)
 
-        ##Set up walls
-        for x in range(173, 650, 64):
-            wall = arcade.Sprite("sprites/items/PNG/Tileset.png", SPRITE_SCALING)
-            wall.center_x = x
-            wall.center_y = 200
-            self.wall_list.append(wall)
+        platforms_layer_name = 'Platforms'
+        coins_layer_name = 'Coins'
+        map_name = 'map.tmx'
 
-        for y in range(273, 500, 64):
-            wall = arcade.Sprite("sprites/items/PNG/Tileset.png", SPRITE_SCALING)
-            wall.center_x = x
-            wall.center_y = 200
-            self.wall_list.append(wall)
+        my_map = arcade.read_tiled_map(map_name, SPRITE_SCALING)
+
+        map_array = arcade.read_tiled_map(map_name, SPRITE_SCALING)
+
+        self.end_of_map = len(map_array[0] * GRID_PIXEL_SIZE)
+
+        self.wall_list = arcade.generate_sprites(my_map, platforms_layer_name, SPRITE_SCALING)
+        self.coin_list = arcade.generate_sprites(my_map, coins_layer_name, SPRITE_SCALING)
+
+        if my_map.backgroundcolor:
+            arcade.set_background_color(my_map.backgroundcolor)
+        ##Set up walls
+        # for x in range(173, 650, 64):
+        #     wall = arcade.Sprite("sprites/items/PNG/Tileset.png", SPRITE_SCALING)
+        #     wall.center_x = x
+        #     wall.center_y = 200
+        #     self.wall_list.append(wall)
+
+        # for y in range(273, 500, 64):
+        #     wall = arcade.Sprite("sprites/items/PNG/Tileset.png", SPRITE_SCALING)
+        #     wall.center_x = x
+        #     wall.center_y = 200
+        #     self.wall_list.append(wall)
         
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list, gravity_constant=GRAVITY)
 
@@ -102,6 +117,9 @@ class MyGame(arcade.Window):
 
             self.coin_list.append(coin)
 
+        self.view_left = 0
+        self.view_bottom = 0
+        self.game_over = False
 
 
     def on_draw(self):
