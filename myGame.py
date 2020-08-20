@@ -130,6 +130,22 @@ class MyGame(arcade.Window):
         self.coin_list.draw()
         self.player_list.draw()
 
+        if self.last_time and self.frame_count % 60 == 0:
+            fps = 1.0 /(time.time() - self.last_time) * 60
+            self.fps_message = f"FPS: {fps:5.0f}"
+
+        if self.fps_message:
+            arcade.draw_text(self.fps_message, self.view_left + 10, self.view_bottom + 40, arcade.color.BLACK, 14)
+
+        if self.frame_count % 60 == 0:
+            self.last_time = time.time()
+
+        distance = self.player_sprite.right
+        arcade.draw_text(output, self.view_left +10, self.view_bottom + 20, arcade.color.BLACK, 14 )
+
+        if self.game_over:
+            arcade.draw_text("Game Over", self.view_left + 200, self.view_bottom + 200, arcade.color.BLACK, 30
+
         output = f"Score: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
